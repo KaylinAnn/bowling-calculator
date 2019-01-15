@@ -22,3 +22,15 @@ h1 {
   border: black solid 1px;
   background: white;
 }
+
+.frame-input {
+  width: 45%;
+  height: 30%;
+}
+
+.frame-input-two {
+}
+
+.input-disabled {
+  display: none;
+}
