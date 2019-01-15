@@ -34,3 +34,8 @@ h1 {
 .input-disabled {
   display: none;
 }
+
+.total {
+  font-size: 30px;
+  text-align: center;
+}
