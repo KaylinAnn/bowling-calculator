@@ -1,25 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      scores: [
+        [null, null],
+        [null, null],
+        [null, null],
+        [null, null],
+        [null, null],
+        [null, null],
+        [null, null],
+        [null, null],
+        [null, null],
+        [null, null]
+      ]
+    };
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Bowling Calculator</h1>
+        <div className="frame-container">
+          <div className="frame frame-one" />
+          <div className="frame frame-two" />
+          <div className="frame frame-three" />
+          <div className="frame frame-four" />
+          <div className="frame frame-five" />
+          <div className="frame frame-six" />
+          <div className="frame frame-seven" />
+          <div className="frame frame-eight" />
+          <div className="frame frame-nine" />
+          <div className="frame frame-ten" />
+        </div>
       </div>
     );
   }
