@@ -34,7 +34,7 @@ class App extends Component {
 
   getNext2(frames, i) {
     // if this is the last frame
-    if (i == frames.length - 1) {
+    if (i === frames.length - 1) {
       // add next two balls
       console.log(frames);
       console.log(frames[i][1] + frames[i][2]);
@@ -56,6 +56,7 @@ class App extends Component {
   }
 
   calculateScores() {
+    //creating an array of arrays. Last frame contains three balls.
     let frames = Object.keys(this.state).map((frame, i) => {
       return i === Object.keys(this.state).length - 1
         ? [
@@ -66,6 +67,7 @@ class App extends Component {
         : [this.state[frame]["ball-1"], this.state[frame]["ball-2"]];
     });
 
+    //Creating an array of scores
     let scores = frames.map((frame, i) => {
       if (this.isStrike(frame)) {
         return 10 + this.getNext2(frames, i);
@@ -79,11 +81,14 @@ class App extends Component {
   }
 
   render() {
+    // calculating array of scores
     const scores = this.calculateScores();
+    //adding all scores for total
     const total = scores.reduce((prev, curr) => prev + curr, 0);
+    //creating inputs for each frame
     const frames = [...Array(9).keys()].map(i => {
       return (
-        <div className="frame">
+        <div className="frame" key={i}>
           <input
             onChange={e => {
               this.setState({
@@ -110,6 +115,7 @@ class App extends Component {
                 }
               });
             }}
+            //disabling the ability to add second ball if first ball is strike in css file
             className={`frame-input ${
               this.state[`frame-${i + 1}`]["ball-1"] === 10
                 ? "input-disabled"
@@ -124,12 +130,13 @@ class App extends Component {
       );
     });
 
+    //adding inputs for last frame
     const lastFrame = (
       <div className="frame">
         <input
           onChange={e => {
             this.setState({
-              ["frame-10"]: {
+              "frame-10": {
                 "ball-1": Number(e.target.value),
                 "ball-2": this.state["frame-10"]["ball-2"],
                 "ball-3":
@@ -150,7 +157,7 @@ class App extends Component {
         <input
           onChange={e => {
             this.setState({
-              [`frame-10`]: {
+              "frame-10": {
                 "ball-1": this.state[`frame-10`]["ball-1"],
                 "ball-2": Number(e.target.value),
                 "ball-3":
@@ -171,7 +178,7 @@ class App extends Component {
         <input
           onChange={e => {
             this.setState({
-              ["frame-10"]: {
+              "frame-10": {
                 "ball-1": this.state["frame-10"]["ball-1"],
                 "ball-2": this.state["frame-10"]["ball-2"],
                 "ball-3":
@@ -207,9 +214,7 @@ class App extends Component {
           {frames}
           {lastFrame}
         </div>
-        {/* <div>
-          <button onClick={() => this.calculateScore()}>Submit Score</button>
-        </div> */}
+
         <div className="total">Score:{total}</div>
       </div>
     );
